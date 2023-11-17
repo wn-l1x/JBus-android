@@ -1,25 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/framelayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@drawable/bg">
-
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/dancingscript"
         android:gravity="center_horizontal"
-        android:text="JBUS"
-        android:textSize="60dp" />
+        android:text="Register your account"
+        android:textSize="45dp" />
+
+    <EditText
+        android:id="@+id/Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/dancingscript"
+        android:hint="Username"
+        android:inputType="text"
+        android:textSize="45dp" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/dancingscript"
         android:hint="Email"
@@ -30,7 +37,7 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/dancingscript"
         android:hint="Password"
@@ -38,30 +45,13 @@
         android:textSize="45dp" />
 
     <Button
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#808080"
-        android:alpha="0.5"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="25dp"
-        android:paddingHorizontal="48dp"
-        android:paddingVertical="16dp"
-        android:fontFamily="@font/dancingscript"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
-
-    <Button
         android:id="@+id/Register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#808080"
         android:alpha="0.5"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="225dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="125dp"
         android:paddingHorizontal="32dp"
         android:paddingVertical="16dp"
         android:fontFamily="@font/dancingscript"
