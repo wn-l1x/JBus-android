@@ -1,23 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/framelayout"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@drawable/bg">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/dancingscript"
-        android:gravity="center_horizontal"
-        android:text="Hati-Hati terhadap penyergapan"
-        android:textSize="60dp" />
+    android:orientation="vertical"
+    tools:context="com.wendyDharmawanJBusER.mainActivity">
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="650dp"
+        tools:context=".MainActivity">
+    </ListView>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/pagination_footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginVertical="21dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="21dp">
+
+        <Button
+            android:id="@+id/prev_page"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/baseline_arrow_back_24"
+            android:minHeight="0dp"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <HorizontalScrollView
+            android:id="@+id/page_number_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:paddingHorizontal="18dp"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:id="@+id/btn_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/next_page"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/baseline_arrow_forward_24"
+            android:minHeight="0dp"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+    </LinearLayout>
+</LinearLayout>

@@ -16,6 +16,9 @@
             android:name="com.wendyDharmawanJBusER.registerActivity"
             android:exported="false" />
         <activity
+            android:name="com.wendyDharmawanJBusER.AboutMeActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wendyDharmawanJBusER.mainActivity"
             android:exported="false" />
         <activity

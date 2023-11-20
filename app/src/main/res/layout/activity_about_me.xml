@@ -28,14 +28,14 @@
 
     <TextView
         android:id="@+id/fillUsername"
-        android:layout_width="155dp"
+        android:layout_width="258dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="200dp"
-        android:layout_marginLeft="75dp"
         android:fontFamily="@font/dancingscript"
         android:gravity="center_horizontal"
         android:text=" -"
-        android:textSize="24dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -49,14 +49,14 @@
 
     <TextView
         android:id="@+id/fillEmail"
-        android:layout_width="155dp"
+        android:layout_width="258dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="250dp"
-        android:layout_marginLeft="75dp"
         android:fontFamily="@font/dancingscript"
         android:gravity="center_horizontal"
-        android:text="-"
-        android:textSize="24dp" />
+        android:text=" -"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textBalance"
@@ -65,19 +65,19 @@
         android:layout_marginTop="300dp"
         android:fontFamily="@font/dancingscript"
         android:gravity="center_horizontal"
-        android:text="BALANCE    : -"
+        android:text="BALANCE    : "
         android:textSize="24dp" />
 
     <TextView
         android:id="@+id/fillBalance"
-        android:layout_width="155dp"
+        android:layout_width="258dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="300dp"
-        android:layout_marginLeft="75dp"
         android:fontFamily="@font/dancingscript"
         android:gravity="center_horizontal"
-        android:text="-"
-        android:textSize="24dp" />
+        android:text=" -"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/topupamount"
