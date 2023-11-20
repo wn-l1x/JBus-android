@@ -16,4 +16,8 @@
         android:text="Hati-Hati terhadap penyergapan"
         android:textSize="60dp" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>

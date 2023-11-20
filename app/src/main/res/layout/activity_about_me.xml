@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="160dp"
+        android:width="96dp"
+        android:height="96dp"
+        android:background="@drawable/baseline_circle_24"
+        android:gravity="center"
+        android:text="B"
+        android:textColor="@color/white"
+        android:textSize="60dp" />
+
+    <TextView
+        android:id="@+id/textUsername"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text="USERNAME : "
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/fillUsername"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="75dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text=" -"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text="EMAIL    : "
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/fillEmail"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="75dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text="-"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/textBalance"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text="BALANCE    : -"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/fillBalance"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="75dp"
+        android:fontFamily="@font/dancingscript"
+        android:gravity="center_horizontal"
+        android:text="-"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id="@+id/topupamount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/dancingscript"
+        android:hint="Top Up Amount"
+        android:inputType="text"
+        android:textSize="36dp" />
+
+    <Button
+        android:id="@+id/Topup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#808080"
+        android:alpha="0.5"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="225dp"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="16dp"
+        android:fontFamily="@font/dancingscript"
+        android:text="Top Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+</FrameLayout>
