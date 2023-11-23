@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "jbus-android"
 include ':app'
-include ':mylibrary'
