@@ -16,6 +16,7 @@ import com.wendyDharmawanJBusER.jbus_android.R;
 import com.wendyDharmawanJBusER.model.Account;
 import com.wendyDharmawanJBusER.model.BaseResponse;
 import com.wendyDharmawanJBusER.request.BaseApiService;
+import com.wendyDharmawanJBusER.request.UtilsApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,12 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         registerNow = findViewById(R.id.Register_button);
         loginNow = findViewById(R.id.login_button);
+        mContext = this;
+        mApiService = UtilsApi.getApiService();
         registerNow.setOnClickListener(v -> {
             moveActivity(this, registerActivity.class);
             viewToast(this, "Move to register");
         });
         loginNow.setOnClickListener(v -> {
-
+            handleLogin();
         });
         try {
             getSupportActionBar();
@@ -91,7 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 // if success finish this activity (back to login activity)
                 if (res.success) finish();
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
-                moveActivity(getBaseContext(), mainActivity.class);
+                loggedAccount = res.payload;
+                moveActivity(mContext, mainActivity.class);
             }
 
             @Override

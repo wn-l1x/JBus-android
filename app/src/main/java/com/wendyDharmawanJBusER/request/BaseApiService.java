@@ -20,6 +20,10 @@ public interface BaseApiService {
             @Query("email") String email,
             @Query("password") String password
     );
+    @POST("account/{id}/topUp")
+    Call<BaseResponse<Double>>  topUp(
+            @Path("id") int id,
+            @Query("amount") double amount);
 
 }
 

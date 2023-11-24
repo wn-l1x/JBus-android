@@ -21,7 +21,7 @@ public class RetrofitClient {
                         Request originalRequest = chain.request();
                         Request newRequest = originalRequest.newBuilder()
 //ganti value header di bawah ini dengan nama kalian
-                                .addHeader("WendyDharmawan", "Changed")
+                                .addHeader("Client-Name", "Wendy")
                                 .build();
                         return chain.proceed(newRequest);
                     })

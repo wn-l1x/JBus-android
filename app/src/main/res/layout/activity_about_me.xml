@@ -80,7 +80,7 @@
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/topupamount"
+        android:id="@+id/TopUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"

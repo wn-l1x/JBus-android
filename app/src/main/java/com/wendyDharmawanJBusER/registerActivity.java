@@ -76,7 +76,7 @@ public class registerActivity extends AppCompatActivity {
 // if success finish this activity (back to login activity)
                 if (res.success) finish();
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
-                moveActivity(getBaseContext(), LoginActivity.class);
+                moveActivity(mContext, LoginActivity.class);
             }
 
             @Override
