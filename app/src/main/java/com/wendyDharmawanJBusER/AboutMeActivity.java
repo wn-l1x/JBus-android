@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,8 +30,12 @@ public class AboutMeActivity extends AppCompatActivity {
     private TextView email = null;
     private TextView balance = null;
     private Button topUpButton = null;
+    private Button renterButton = null;
     private EditText topUpAmount = null;
     private Context mContext = null;
+    private TextView Rentertext = null;
+    private TextView notRentertext = null;
+    private TextView notRenterClick = null;
 
 
     @Override
@@ -48,7 +53,24 @@ public class AboutMeActivity extends AppCompatActivity {
         email.setText(LoginActivity.loggedAccount.email);
         balance.setText(String.valueOf(LoginActivity.loggedAccount.balance));
         topUpButton.setOnClickListener(v -> handleTopUp());
+        Rentertext = (TextView) findViewById((R.id.rtext));
+        renterButton = findViewById((R.id.renter_button));
+        notRentertext = (TextView) findViewById(R.id.nrtext);
+        notRenterClick = (TextView) findViewById(R.id.nrt_click);
+        notRenterClick.setOnClickListener(v -> moveActivity(this,registerRenterActivity.class));
+        if (LoginActivity.loggedAccount.company != null){
+        notRentertext.setVisibility(View.GONE);
+        notRenterClick.setVisibility(View.GONE);
+        }
+        else {
+        Rentertext.setVisibility((View.GONE));
+        renterButton.setVisibility((View.GONE));
+        }
         getSupportActionBar().hide();
+    }
+    private void moveActivity(Context ctx, Class<?> cls) {
+        Intent intent = new Intent(ctx, cls);
+        startActivity(intent);
     }
 
     protected void handleTopUp() {
