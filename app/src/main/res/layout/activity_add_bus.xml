@@ -98,14 +98,8 @@
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="Bus Type"
-                android:fontFamily="@font/kimburgery"
                 android:textSize="18dp"
                 android:textColor="@color/black"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_directions_bus_24"
-                app:tint="@color/black" />
             <Spinner
                 android:id="@+id/bus_type_dropdown"
                 android:layout_width="match_parent"
@@ -123,13 +117,11 @@
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="Departure"
-                android:fontFamily="@font/kimburgery"
                 android:textSize="18dp"
                 android:textColor="@color/black"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_home_24"
                 app:tint="@color/black" />
             <Spinner
                 android:id="@+id/departure_dropdown"
@@ -148,7 +140,6 @@
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="Arrival"
-                android:fontFamily="@font/kimburgery"
                 android:textSize="18dp"
                 android:textColor="@color/black"/>
             <ImageView
@@ -173,7 +164,6 @@
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:text="Facilities :"
-                android:fontFamily="@font/kimburgery"
                 android:textSize="18dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
@@ -290,7 +280,6 @@
             android:layout_marginBottom="1dp"
             android:id="@+id/addBusBtn"
             android:paddingHorizontal="85dp"
-            android:background="@drawable/round_btn"
             android:text="Add"
             android:textStyle="bold"
             android:textColor="@color/white"/>
