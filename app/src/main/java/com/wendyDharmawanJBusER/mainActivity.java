@@ -1,5 +1,7 @@
 package com.wendyDharmawanJBusER;
 
+import static com.wendyDharmawanJBusER.LoginActivity.loggedAccount;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,8 +21,15 @@ import android.widget.Toast;
 
 import com.wendyDharmawanJBusER.jbus_android.R;
 import com.wendyDharmawanJBusER.model.Bus;
+import com.wendyDharmawanJBusER.request.BaseApiService;
+import com.wendyDharmawanJBusER.request.UtilsApi;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class mainActivity extends AppCompatActivity {
@@ -30,28 +39,28 @@ public class mainActivity extends AppCompatActivity {
     private int pageSize = 12; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus = new ArrayList<>();
+    private List<Bus> listBus;
     private Button prevButton = null;
     private Button nextButton = null;
     private ListView busListView = null;
     private HorizontalScrollView pageScroll = null;
+    BaseApiService mApiService;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        BusArrayAdapter numbersArrayAdapter = new BusArrayAdapter(this, Bus.sampleBusList(20));
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
         ListView numbersListView = findViewById(R.id.listView);
-        numbersListView.setAdapter(numbersArrayAdapter);
 
         prevButton = findViewById(R.id.prev_page);
         nextButton = findViewById(R.id.next_page);
         pageScroll = findViewById(R.id.page_number_scroll);
         busListView = findViewById(R.id.listView);
+        getAllMyBus();
         // membuat sample list
-        listBus = Bus.sampleBusList(20);
-        listSize = listBus.size();
         // construct the footer
         paginationFooter();
         goToPage(currentPage);
@@ -64,13 +73,39 @@ public class mainActivity extends AppCompatActivity {
             currentPage = currentPage != noOfPages -1? currentPage+1 : currentPage;
             goToPage(currentPage);
         });
-
     }
 
-    @Override
+    protected void getAllMyBus(){
+        mApiService.getAllBus().enqueue(new Callback<List<Bus>>() {
+            @Override
+            public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                listBus = response.body();
+                System.out.println(listBus);
+                if (!listBus.isEmpty()) {
+
+                    ArrayList<Bus> setList = new ArrayList<>(listBus);
+
+                    BusArrayAdapter pageList = new BusArrayAdapter(mContext, setList);
+                    busListView.setAdapter(pageList);
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<List<Bus>> call, Throwable t) {
+                Toast.makeText(mContext, "Ada problem pada server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+            @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if (item.getItemId() == R.id.app_bar_profile) {
-            moveActivity(this, AboutMeActivity.class);
+            moveActivity(mContext, AboutMeActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);

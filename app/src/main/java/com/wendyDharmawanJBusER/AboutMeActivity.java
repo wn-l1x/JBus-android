@@ -58,6 +58,7 @@ public class AboutMeActivity extends AppCompatActivity {
         notRentertext = (TextView) findViewById(R.id.nrtext);
         notRenterClick = (TextView) findViewById(R.id.nrt_click);
         notRenterClick.setOnClickListener(v -> moveActivity(this,registerRenterActivity.class));
+        renterButton.setOnClickListener(v -> moveActivity(this,ManageBusActivity.class));
         if (LoginActivity.loggedAccount.company != null){
         notRentertext.setVisibility(View.GONE);
         notRenterClick.setVisibility(View.GONE);

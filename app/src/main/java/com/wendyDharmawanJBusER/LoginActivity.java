@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.wendyDharmawanJBusER.jbus_android.R;
 import com.wendyDharmawanJBusER.model.Account;
 import com.wendyDharmawanJBusER.model.BaseResponse;
+import com.wendyDharmawanJBusER.model.Bus;
 import com.wendyDharmawanJBusER.request.BaseApiService;
 import com.wendyDharmawanJBusER.request.UtilsApi;
 
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerNow = null;
     private Button loginNow = null;
     public static Account loggedAccount= null;
+    public static Bus currentBus = null;
     private EditText email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (res.success) finish();
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
                 loggedAccount = res.payload;
-                moveActivity(mContext, mainActivity.class);
+                if (loggedAccount != null){
+                    moveActivity(mContext, mainActivity.class);
+                }
+
             }
 
             @Override

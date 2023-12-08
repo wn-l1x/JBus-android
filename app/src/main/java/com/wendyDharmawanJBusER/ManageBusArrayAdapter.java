@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,12 +20,12 @@ import com.wendyDharmawanJBusER.model.Bus;
 
 import java.util.List;
 
-public class BusArrayAdapter extends ArrayAdapter<Bus> {
+public class ManageBusArrayAdapter extends ArrayAdapter<Bus> {
 
 
 
     // invoke the suitable constructor of the ArrayAdapter class
-    public BusArrayAdapter(@NonNull Context context, List<Bus> arrayList) {
+    public ManageBusArrayAdapter(@NonNull Context context, List<Bus> arrayList) {
 
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -42,7 +41,7 @@ public class BusArrayAdapter extends ArrayAdapter<Bus> {
 
         // of the recyclable view is null then inflate the custom layout for the same
         if (currentItemView == null) {
-            currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.bus_view, parent, false);
+            currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.managed_bus_view, parent, false);
         }
 
         // get the position of the view from the ArrayAdapter
@@ -54,15 +53,19 @@ public class BusArrayAdapter extends ArrayAdapter<Bus> {
         // then according to the position of the view assign the desired TextView 1 for the same
         TextView textView1 = currentItemView.findViewById(R.id.textView1);
         textView1.setText(currentNumberPosition.toString());
-        Button detailButton = currentItemView.findViewById(R.id.detail_button);
+        ImageButton calendarIcon = currentItemView.findViewById(R.id.calendar_icon);
         // then return the recyclable view
-        detailButton.setOnClickListener(v -> {
+        calendarIcon.setOnClickListener(v -> {
             LoginActivity.currentBus = currentNumberPosition;
-            Intent intent = new Intent(getContext(), BusDetailActivity.class);
+            Intent intent = new Intent(getContext(), AddBusScheduleActivity.class);
             getContext().startActivity(intent);
         });
+
+
+
+
         return currentItemView;
-    }
+}
 
 }
 

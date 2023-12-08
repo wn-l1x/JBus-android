@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,8 +42,8 @@ public class ManageBusActivity extends AppCompatActivity {
     private BaseApiService mApiService;
     private Context mContext;
     private ListView busListView = null;
-    private TextView noBus;
     private List<Bus> busList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,7 @@ public class ManageBusActivity extends AppCompatActivity {
         mApiService = UtilsApi.getApiService();
         mContext = this;
         busListView = findViewById(R.id.manageBusView);
-
-        BusArrayAdapter numbersArrayAdapter = new BusArrayAdapter(this, Bus.sampleBusList(20));
-        ListView numbersListView = findViewById(R.id.manageBusView);
-        numbersListView.setAdapter(numbersArrayAdapter);
-
+        getAllMyBus();
         getSupportActionBar().setTitle("Manage Bus");
     }
 
@@ -70,13 +67,13 @@ public class ManageBusActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add_bus) {
-            moreActivity(this, AddBusActivity.class);
+            moveActivity(mContext, AddBusActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void moreActivity (Context ctx, Class<?> cls) {
+    private void moveActivity (Context ctx, Class<?> cls) {
         Intent intent = new Intent(ctx, cls);
         startActivity(intent);
     }
@@ -85,20 +82,22 @@ public class ManageBusActivity extends AppCompatActivity {
         mApiService.getMyBus(loggedAccount.id).enqueue(new Callback<List<Bus>>() {
             @Override
             public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
-                if(!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 busList = response.body();
-                if(!busList.isEmpty()){
+                System.out.println(busList);
+                if (!busList.isEmpty()) {
 
                     ArrayList<Bus> setList = new ArrayList<>(busList);
 
-                    BusArrayAdapter pageList = new BusArrayAdapter(mContext, setList);
+                    ManageBusArrayAdapter pageList = new ManageBusArrayAdapter(mContext, setList);
                     busListView.setAdapter(pageList);
                 }
             }
+
 
             @Override
             public void onFailure(Call<List<Bus>> call, Throwable t) {
@@ -106,4 +105,6 @@ public class ManageBusActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+
+    }

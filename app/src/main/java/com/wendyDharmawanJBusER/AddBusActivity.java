@@ -76,6 +76,7 @@ public class AddBusActivity extends AppCompatActivity {
         setStationList();
         handleFacilitiesCheckbox();
         addBusButton.setOnClickListener(x -> {
+            handleFacilitiesCheckbox();
             handleAddBus();
         });
     }
@@ -166,7 +167,6 @@ public class AddBusActivity extends AppCompatActivity {
         Large_Baggage = findViewById(R.id.checkbox_large_baggage);
         CoolBox = findViewById(R.id.checkbox_coolbox);
         Electric_Socket = findViewById(R.id.checkbox_electric_socket);
-
         if(AC.isChecked()){
             facilityList.add(Facility.AC);
         }
@@ -220,27 +220,26 @@ public class AddBusActivity extends AppCompatActivity {
 
         int capacity = Integer.valueOf(busCapacityValue);
         int price = Integer.valueOf(busPriceValue);
-        mApiService.createBus(loggedAccount.id, busNameValue, capacity, facilityList, selectedBusType, price, selectedDepartureStation, selectedArrivalStation)
-                .enqueue(new Callback<BaseResponse<Bus>>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse<Bus>> call, Response<BaseResponse<Bus>> response) {
-                        if(!response.isSuccessful()){
-                            viewToast(mContext, "Application error " + response.code());
-                            return;
-                        }
 
-                        BaseResponse<Bus> res = response.body();
-                        if(res.success) finish();
-                        viewToast(mContext, res.message);
-                    }
+        mApiService.create(loggedAccount.id, busNameValue, capacity, facilityList, selectedBusType, price, selectedDepartureStation, selectedArrivalStation).enqueue(new Callback<BaseResponse<Bus>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Bus>> call, Response<BaseResponse<Bus>> response) {
+                if(!response.isSuccessful()){
+                    viewToast(mContext, "Application error " + response.code());
+                    return;
+                }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse<Bus>> call, Throwable t) {
-                        viewToast(mContext, "Ada problem pada server");
-                    }
-                });
+                BaseResponse<Bus> res = response.body();
+                if(res.success) finish();
+                viewToast(mContext, res.message);
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Bus>> call, Throwable t) {
+                t.printStackTrace();
+                viewToast(mContext, "Ada problem pada server");
+            }
+        });
     }
 
-    public void onCheckboxClicked(View view) {
-    }
 }

@@ -7,6 +7,7 @@
     tools:context="com.wendyDharmawanJBusER.AddBusActivity"
     android:orientation="vertical"
     android:background="@color/white"
+
     >
 
     <LinearLayout
@@ -48,7 +49,6 @@
             android:drawablePadding="10dp"
             android:padding="5dp"
             android:hint="Bus name"
-            android:textColorHint="@color/white"
             android:textSize="15sp"
             />
 
@@ -61,7 +61,6 @@
             android:drawablePadding="15dp"
             android:padding="5dp"
             android:hint="Capacity"
-            android:textColorHint="@color/white"
             android:textSize="15sp"
             />
 
@@ -74,7 +73,6 @@
             android:drawablePadding="15dp"
             android:padding="5dp"
             android:hint="Price"
-            android:textColorHint="@color/white"
             android:textSize="15sp"
             />
     </LinearLayout>
@@ -272,7 +270,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

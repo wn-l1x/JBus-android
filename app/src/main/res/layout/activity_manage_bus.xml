@@ -12,7 +12,10 @@
         android:id="@+id/manageBusView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ManageBusActivity">
+        tools:context=".ManageBusActivity"
+        android:divider="#000080"
+        android:dividerHeight="1dp"
+        >
 
     </ListView>
 

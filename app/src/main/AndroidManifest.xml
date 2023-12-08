@@ -21,10 +21,22 @@
             android:name="com.wendyDharmawanJBusER.AboutMeActivity"
             android:exported="false" />
         <activity
+            android:name="com.wendyDharmawanJBusER.BusDetailActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wendyDharmawanJBusER.mainActivity"
             android:exported="false" />
         <activity
+            android:name="com.wendyDharmawanJBusER.AddBusScheduleActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wendyDharmawanJBusER.registerRenterActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.wendyDharmawanJBusER.AddBusActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.wendyDharmawanJBusER.ManageBusActivity"
             android:exported="false" />
         <activity
             android:name="com.wendyDharmawanJBusER.LoginActivity"

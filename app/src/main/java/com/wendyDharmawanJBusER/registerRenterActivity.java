@@ -1,5 +1,7 @@
 package com.wendyDharmawanJBusER;
 
+import static com.wendyDharmawanJBusER.LoginActivity.loggedAccount;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public class registerRenterActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_register_renter);
         companyName = findViewById(R.id.companyname);
         Address = findViewById(R.id.address);
@@ -40,6 +43,7 @@ public class registerRenterActivity extends AppCompatActivity {
         registerRenterButton = findViewById(R.id.Register_renter_button);
         registerRenterButton.setOnClickListener(v -> {
            handleRegisterRenter();
+            moveActivity(this, AboutMeActivity.class);
         });
     }
     private void moveActivity(Context ctx, Class<?> cls) {
@@ -51,15 +55,15 @@ public class registerRenterActivity extends AppCompatActivity {
         Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show();
     }
     protected void handleRegisterRenter(){
-        String companynameS = companyName.toString();
-        String addressS = Address.toString();
-        String phonenumberS = PhoneNumber.toString();
+        String companynameS = companyName.getText().toString();
+        String addressS = Address.getText().toString();
+        String phonenumberS = PhoneNumber.getText().toString();
         if (companynameS.isEmpty() || addressS.isEmpty() || phonenumberS.isEmpty()){
             Toast.makeText(mContext, "Field cannot be empty",
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        mApiService.registerRenter(LoginActivity.loggedAccount.id ,companynameS,addressS,phonenumberS).enqueue(new Callback<BaseResponse<Renter>>() {
+        mApiService.registerRenter(loggedAccount.id ,companynameS,addressS,phonenumberS).enqueue(new Callback<BaseResponse<Renter>>() {
 
             @Override
             public void onResponse(Call<BaseResponse<Renter>> call,
@@ -71,11 +75,11 @@ public class registerRenterActivity extends AppCompatActivity {
                     return;
                 }
                 BaseResponse<Renter> res = response.body();
-// if success finish this activity (back to login activity)
-                if (res.success) finish();
-                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
-                LoginActivity.loggedAccount.company = res.payload;
-                moveActivity(mContext, AboutMeActivity.class);
+                if(res.success){
+                    loggedAccount.company = res.payload;
+                    finish();
+                }
+
             }
 
             @Override
