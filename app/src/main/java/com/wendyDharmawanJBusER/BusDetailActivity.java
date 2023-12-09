@@ -78,7 +78,6 @@ public class BusDetailActivity extends AppCompatActivity {
         spinner.setAdapter(adapterSchedule);
         spinner.setOnItemSelectedListener(setSchedule());
 
-        List<Schedule> schedules = currentBus.schedules;
         busname.setText(currentBus.name);
         priceText.setText(String.valueOf(currentBus.price.price));
         busCapacity.setText(String.valueOf(currentBus.capacity));
@@ -101,10 +100,9 @@ public class BusDetailActivity extends AppCompatActivity {
             }
         };
     }
-        String setFacilities(){
-            String memek = "";
+        void setFacilities(){
             if (currentBus.facilities.contains(Facility.AC)){
-            memek = memek + "AC ";
+             busAc.setPaintFlags((Paint.STRIKE_THRU_TEXT_FLAG));
             }
             if (!currentBus.facilities.contains(Facility.WIFI)){
                 busWiFi.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
@@ -127,7 +125,6 @@ public class BusDetailActivity extends AppCompatActivity {
             if (!currentBus.facilities.contains(Facility.ELECTRIC_SOCKET)){
                 busSocket.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             }
-            return memek;
     }
     private void moveActivity(Context ctx, Class<?> cls){
         Intent intent = new Intent(ctx, cls);

@@ -5,6 +5,7 @@ import com.wendyDharmawanJBusER.model.BaseResponse;
 import com.wendyDharmawanJBusER.model.Bus;
 import com.wendyDharmawanJBusER.model.BusType;
 import com.wendyDharmawanJBusER.model.Facility;
+import com.wendyDharmawanJBusER.model.Payment;
 import com.wendyDharmawanJBusER.model.Renter;
 import com.wendyDharmawanJBusER.model.Station;
 
@@ -67,4 +68,12 @@ public interface BaseApiService {
                 @Query("busId") int busId,
                 @Query("time") String time
                 );
-}
+
+    @POST("payment/makeBooking")
+    Call <BaseResponse<Payment>> makeBooking(
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("busId") int busId,
+            @Query("busSeats") List<String> busSeats,
+            @Query("departureDate") String departureDate
+    );}

@@ -406,7 +406,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/black"
-            android:text="Make Booking" />
+            android:text="Select Schedule" />
 
 
     </androidx.cardview.widget.CardView>

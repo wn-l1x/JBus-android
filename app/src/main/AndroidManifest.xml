@@ -39,6 +39,9 @@
             android:name="com.wendyDharmawanJBusER.ManageBusActivity"
             android:exported="false" />
         <activity
+            android:name="com.wendyDharmawanJBusER.MakeBookingActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wendyDharmawanJBusER.LoginActivity"
             android:exported="true">
             <intent-filter>
