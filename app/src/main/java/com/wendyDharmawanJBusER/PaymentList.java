@@ -1,10 +1,5 @@
 package com.wendyDharmawanJBusER;
 
-import static com.wendyDharmawanJBusER.LoginActivity.loggedAccount;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.wendyDharmawanJBusER.jbus_android.R;
 import com.wendyDharmawanJBusER.model.Bus;
+import com.wendyDharmawanJBusER.model.Payment;
 import com.wendyDharmawanJBusER.request.BaseApiService;
 import com.wendyDharmawanJBusER.request.UtilsApi;
 
@@ -31,18 +30,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class mainActivity extends AppCompatActivity {
+public class PaymentList extends AppCompatActivity {
     private androidx.appcompat.widget.AppCompatButton userprofile_button = null;
     private Button[] btns;
     private int currentPage = 0;
     private int pageSize = 12; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus;
+    private List<Payment> listPayment;
     private Button prevButton = null;
     private Button nextButton = null;
-    private ListView busListView = null;
+    private ListView paymentListView = null;
     private HorizontalScrollView pageScroll = null;
     BaseApiService mApiService;
     Context mContext;
@@ -50,21 +48,17 @@ public class mainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_payment_list);
+        System.out.println(LoginActivity.loggedAccount.id);
         mApiService = UtilsApi.getApiService();
         mContext = this;
-        ListView numbersListView = findViewById(R.id.listView);
-
         prevButton = findViewById(R.id.prev_page);
         nextButton = findViewById(R.id.next_page);
         pageScroll = findViewById(R.id.page_number_scroll);
-        busListView = findViewById(R.id.listView);
-        getAllMyBus();
-        // membuat sample list
-        // construct the footer
+        paymentListView = findViewById(R.id.listView);
+        getAllMyPayment();
         paginationFooter();
         goToPage(currentPage);
-        // listener untuk button prev dan button
         prevButton.setOnClickListener(v -> {
             currentPage = currentPage != 0? currentPage-1 : 0;
             goToPage(currentPage);
@@ -75,41 +69,37 @@ public class mainActivity extends AppCompatActivity {
         });
     }
 
-    protected void getAllMyBus(){
-        mApiService.getAllBus().enqueue(new Callback<List<Bus>>() {
+    protected void getAllMyPayment(){
+        mApiService.getmyPaymentBuyer(LoginActivity.loggedAccount.id).enqueue(new Callback<List<Payment>>() {
             @Override
-            public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
+            public void onResponse(Call<List<Payment>> call, Response<List<Payment>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                listBus = response.body();
-                System.out.println(listBus);
-                if (!listBus.isEmpty()) {
+                listPayment = response.body();
+                System.out.println(listPayment);
+                if (!listPayment.isEmpty()) {
 
-                    ArrayList<Bus> setList = new ArrayList<>(listBus);
+                    ArrayList<Payment> setList = new ArrayList<>(listPayment);
 
-                    BusArrayAdapter pageList = new BusArrayAdapter(mContext, setList);
-                    busListView.setAdapter(pageList);
+                    PaymentArrayAdapter pageList = new PaymentArrayAdapter(mContext, setList);
+                    paymentListView.setAdapter(pageList);
                 }
             }
 
-
             @Override
-            public void onFailure(Call<List<Bus>> call, Throwable t) {
+            public void onFailure(Call<List<Payment>> call, Throwable t) {
+                t.printStackTrace();
                 Toast.makeText(mContext, "Ada problem pada server", Toast.LENGTH_SHORT).show();
             }
         });
     }
-            @Override
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if (item.getItemId() == R.id.app_bar_profile) {
             moveActivity(mContext, AboutMeActivity.class);
-            return true;
-        }
-        if (item.getItemId() == R.id.app_bar_payment) {
-            moveActivity(mContext, PaymentList.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -160,7 +150,7 @@ public class mainActivity extends AppCompatActivity {
                 btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.baseline_circle_24));
                 btns[i].setTextColor(getResources().getColor(android.R.color.white));
                 scrollToItem(btns[index]);
-                viewPaginatedList(listBus, currentPage);
+                viewPaginatedList(listPayment, currentPage);
             } else {
                 btns[i].setBackgroundColor(getResources().getColor(android.R.color.transparent));
                 btns[i].setTextColor(getResources().getColor(android.R.color.black));
@@ -174,14 +164,14 @@ public class mainActivity extends AppCompatActivity {
         pageScroll.smoothScrollTo(scrollX, 0);
     }
 
-    private void viewPaginatedList(List<Bus> listBus, int page) {
+    private void viewPaginatedList(List<Payment> listPayment, int page) {
         int startIndex = page * pageSize;
-        int endIndex = Math.min(startIndex + pageSize, listBus.size());
-        List<Bus> paginatedList = listBus.subList(startIndex, endIndex);
+        int endIndex = Math.min(startIndex + pageSize, listPayment.size());
+        List<Payment> paginatedList = listPayment.subList(startIndex, endIndex);
         // Tampilkan paginatedList ke listview
         // seperti yang sudah kalian lakukan sebelumnya,
         // menggunakan array adapter.
-        BusArrayAdapter numbersArrayAdapter = new BusArrayAdapter(this, paginatedList);
+        PaymentArrayAdapter numbersArrayAdapter = new PaymentArrayAdapter(this, paginatedList);
 
         // create the instance of the ListView to set the numbersViewAdapter
         ListView numbersListView = findViewById(R.id.listView);

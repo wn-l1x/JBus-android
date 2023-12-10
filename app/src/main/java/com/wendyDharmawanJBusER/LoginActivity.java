@@ -16,6 +16,7 @@ import com.wendyDharmawanJBusER.jbus_android.R;
 import com.wendyDharmawanJBusER.model.Account;
 import com.wendyDharmawanJBusER.model.BaseResponse;
 import com.wendyDharmawanJBusER.model.Bus;
+import com.wendyDharmawanJBusER.model.Payment;
 import com.wendyDharmawanJBusER.request.BaseApiService;
 import com.wendyDharmawanJBusER.request.UtilsApi;
 
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginNow = null;
     public static Account loggedAccount= null;
     public static Bus currentBus = null;
+    public static Payment currentPayment = null;
     private EditText email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             handleLogin();
         });
         try {
-            getSupportActionBar();
+            getSupportActionBar().hide();
         } catch (NullPointerException e) {
 
         }

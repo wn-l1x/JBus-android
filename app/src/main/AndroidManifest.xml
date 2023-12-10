@@ -42,6 +42,12 @@
             android:name="com.wendyDharmawanJBusER.MakeBookingActivity"
             android:exported="false" />
         <activity
+            android:name="com.wendyDharmawanJBusER.PaymentList"
+            android:exported="false" />
+        <activity
+            android:name="com.wendyDharmawanJBusER.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wendyDharmawanJBusER.LoginActivity"
             android:exported="true">
             <intent-filter>
